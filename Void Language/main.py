@@ -1,8 +1,54 @@
 # creation day = 9/03/2021
-# last update = 11/03/2021
-# version = 0.0.6(test)
-# lines = 352
+# last update = 12/03/2021
+# version = 0.0.8 (test)
+# lines = 656
 # expected lines = 500-1000
+
+'''
+
+important updates {
+
+    9/03/2021 {
+
+        1 - Project started
+        2 - 3 basic first functions (log, var, userLog)
+
+    }
+
+    10/03/2021 {
+
+        1 - New functions (If, For)
+        2 - Bug fix
+
+    }
+
+    11/03/2021 {
+
+        1 - Repository created
+        2 - Code Publication (on www.GitHub.com/MarvinChaves)
+        3 - Function Return added
+
+    }
+
+    12/03/2021 {
+
+        Big Update {
+
+            1 - 1 new function added (Math Function)
+            2 - Update Log added
+            3 - Code organization
+            4 - Function Return is now compatible with math function
+            5 - If function can now execute functions (log)
+            6 - If function has now a else function
+            7 - 351 lines added
+
+        }
+    }
+}
+
+'''
+
+
 
 ''' 
 
@@ -92,14 +138,44 @@ List of commands(with examples){
                 value 3 -> other value(str, int, flost and bool)
 
             pratic example {
+                
+                log str example {
+                    
+                    with else example {
 
-                If
-                    5
-                    >
-                    2
+                        If
+                            5
+                            >
+                            2
+                                log -> execute the function if return type == True
+                                    str
+                                        hello, world
+                                            else -> optional, you can write none if you do not want else
+                                                log
+                                                    str
+                                                        hello, universe
+                    
+                        console {
+                            hello, world
+                        }
+                    }
 
-                console {
-                    True
+                    with none example {
+
+                        If
+                            10
+                            ==
+                            3
+                                log
+                                    str
+                                        hello, world
+                                            none
+
+                        console {
+                            False
+                        }
+
+                    }
                 }
             }
         }
@@ -163,6 +239,15 @@ List of commands(with examples){
             }
         }
     }
+
+    math { this function make the math simple
+
+        examples {
+
+
+
+        }
+    }
 }
 
 WARNING {
@@ -175,6 +260,7 @@ WARNING {
 
 from time import sleep
 
+# =================================================== log def ===================================================
 
 def log():
     global functionName, logString
@@ -228,6 +314,8 @@ def log():
         logger = False
         
 
+# =================================================== Var def ===================================================
+
 def var():
     global varName, varValue, varStyle
 
@@ -252,6 +340,8 @@ def var():
         elif varStyle == 'bool':
             varValue = bool(input('         '))
 
+
+# =================================================== userLog def ===================================================
 
 def userLog():
     global inputName, inputValue
@@ -282,55 +372,255 @@ def userLog():
         inputValue = bool(input(''))
 
 
+# =================================================== If def ===================================================
+
 def If():
 
     value1 = input('    ')
     value2 = input('    ')
     value3 = input('    ')
 
+    varPrint = False
+    strPrint = False
+    isVarName = False
+    elseIsVarName = False
+    elseVarPrint = False
+    elseStrPrint = False
+
+    make = input('      ')
+
+    if make == 'log':
+        style = input('         ')
+
+        if style == 'str':
+            string = input('             ')
+            strPrint = True
+            
+            elseChoice = input('               ')
+
+            if elseChoice == 'else':
+                makeElse = input('                  ')
+
+                if makeElse == 'log':
+                    elseType = input('                     ')
+
+                    if elseType == 'str':
+                        elseString = input('                         ')
+                        elseStrPrint = True
+                        elseVarPrint = False
+
+                    elif elseType == 'var':
+                        elseVarRealName = input('                        ')
+                        elseVarPrint = True
+                        elseStrPrint = False
+
+            else:
+                pass
+        
+        elif style == 'var':
+            varRealName = input('           ')
+            if varRealName == varName:
+                isVarName = True
+            
+            else:
+                isVarName = False
+
+            elseChoice = input('              ')
+
+            if elseChoice == 'else':
+                makeElse = input('              ')
+
+                if makeElse == 'log':
+                    elseType = input('                  ')
+
+                    if elseType == 'str':
+                        elseString = input('                     ')
+
+                    elif elseType == 'var':
+                        elseVarRealName = input('                    ')
+                        if elseVarRealName == varName:
+                            elseIsVarName = True
+                        
+                        else:
+                            elseIsVarName = False
+                
+                elif makeElse == 'none':
+                    pass
+
+                if varRealName == varName:
+                    varPrint = True
+                
+                else:
+                    varPrint = False
+            
+            else:
+                pass
+
     print('--' * 50)
     if value2 == '==':
         if value1 == value3:
-            print('\n\n True')
+            if make == 'none':
+                print('\n\n True')
+            
+            elif strPrint:
+                sleep(1)
+                print(string)
+                strPrint = False
+            
+            elif varPrint and isVarName:
+                sleep(1)
+                print(varValue)
+                varPrint = False
         
         else:
-            print('\n\n False')
-    
+            if makeElse == 'none':
+                print('False')
+            
+            elif elseStrPrint:
+                sleep(1)
+                print(elseString)
+            
+            elif elseVarPrint:
+                sleep(1)
+                print(elseVarRealName)
+
     elif value2 == '>':
-        if value1 > value3:
-            print('\n\n True')
+        if int(value1) > int(value3):
+            if make == 'none':
+                print('\n\n True')
+            
+            elif strPrint:
+                sleep(1)
+                print(string)
+                strPrint = False
+            
+            elif varPrint:
+                sleep(1)
+                print(varValue)
+                varPrint = False
         
-        else:
-            print('\n\n False')
+        elif value1 < value2:
+            if makeElse == 'none':
+                print('False')
+            
+            elif elseStrPrint:
+                sleep(1)
+                print(elseString)
+            
+            elif elseVarPrint:
+                sleep(1)
+                print(elseVarRealName)
     
     elif value2 == '<':
         if value1 < value3:
-            print('\n\n True')
+            if make == 'none':
+                print('\n\n True')
+            
+            elif strPrint:
+                sleep(1)
+                print(string)
+                strPrint = False
+            
+            elif varPrint:
+                sleep(1)
+                print(varValue)
+                varPrint = False
         
         else:
-            print('\n\n False')
+            if makeElse == 'none':
+                print('False')
+            
+            elif elseStrPrint:
+                sleep(1)
+                print(elseString)
+            
+            elif elseVarPrint:
+                sleep(1)
+                print(elseVarRealName)
 
     elif value2 == '!=':
         if value1 != value3:
-            print('\n\n True')
+            if make == 'none':
+                print('\n\n True')
+            
+            elif strPrint:
+                sleep(1)
+                print(string)
+                strPrint = False
+            
+            elif varPrint:
+                sleep(1)
+                print(varValue)
+                varPrint = False
         
         else:
-            print('\n\n False')
+            if makeElse == 'none':
+                print('False')
+            
+            elif elseStrPrint:
+                sleep(1)
+                print(elseString)
+            
+            elif elseVarPrint:
+                sleep(1)
+                print(elseVarRealName)
     
     elif value2 == '>=':
         if value1 >= value3:
-            print('\n\n True')
+            if make == 'none':
+                print('\n\n True')
+            
+            elif strPrint:
+                sleep(1)
+                print(string)
+                strPrint = False
+            
+            elif varPrint:
+                sleep(1)
+                print(varValue)
+                varPrint = False
 
         else:
-            print('\n\n False')
+            if makeElse == 'none':
+                print('False')
+            
+            elif elseStrPrint:
+                sleep(1)
+                print(elseString)
+            
+            elif elseVarPrint:
+                sleep(1)
+                print(elseVarRealName)
 
     elif value2 == '<=':
         if value1 <= value3:
-            print('\n\n True')
+            if make == 'none':
+                print('\n\n True')
+            
+            elif strPrint:
+                sleep(1)
+                print(string)
+                strPrint = False
+            
+            elif varPrint:
+                sleep(1)
+                print(varValue)
+                varPrint = False
         
         else:
-            print('\n\n False')
+            if makeElse == 'none':
+                print('False')
+            
+            elif elseStrPrint:
+                sleep(1)
+                print(elseString)
+            
+            elif elseVarPrint:
+                sleep(1)
+                print(elseVarRealName)
 
+
+# =================================================== For def ===================================================
 
 def For():
     functionCalled = input('    ')
@@ -349,33 +639,41 @@ def For():
                 print(string)
 
 
+# ===================================================Return def ===================================================
+
 def Return():
-    global returnType, timesReturned, logReturn, varReturn, userLogReturn
+    global returnType, timesReturned, logReturn, varReturn, userLogReturn, mathReturn
 
     logReturn = False
     varReturn = False
     userLogReturn = False
+    mathReturn = False
     stop = False
 
     function = input('    ')
 
     if function == 'stop':
-            stoped = input('        ')
-            if stoped == 'all':
-                logReturn = False
-                varReturn = False
-                userLogReturn = False
+        stoped = input('        ')
+        if stoped == 'all':
+            logReturn = False
+            varReturn = False
+            userLogReturn = False
+            mathReturn = False
 
-            elif stoped == 'log':
-                logReturn = False
+        elif stoped == 'log':
+            logReturn = False
+        
+        elif stoped == 'var':
+            varReturn = False
+        
+        elif stoped == 'userLog':
+            userLogReturn = False
+        
+        elif stoped == 'math':
+            mathReturn = False
             
-            elif stoped == 'var':
-                varReturn = False
-            
-            elif stoped == 'userLog':
-                userLogReturn = False
-            
-            stop = True
+        stop = True
+
     if not stop:
         timesReturned = input('         ')
         returnType = bool(input('            '))
@@ -388,9 +686,42 @@ def Return():
         
         elif function == 'userLog':
             userLogReturn = True
+        
+        elif function == 'math':
+            mathReturn = True
+
+
+# ================================================= Math def =====================================================================
+
+def math():
+    realValue = 0
+    num1 = int(input('  '))
+    value = str(input('  '))
+    num2 = int(input('  '))
+
+    if value == '+':
+        realValue = num1 + num2
+    
+    elif value == '-':
+        realValue = num1 - num2
+    
+    elif value == '*':
+        realValue = num1 * num2
+    
+    elif value == '/':
+        realValue = num1 / num2
+    
+    sleep(1.5)
+    print('--' * 50)
+    sleep(1)
+    print(f'{realValue :.2f}')
+
     
 count = 1
 while True:
+
+# ================================================ Main ===================================================================
+
     functionName = input()
     if functionName != 'Return' and count == 1:
         logReturn = False
@@ -441,7 +772,7 @@ while True:
 
         else:
             continue
-    
+
     elif functionName == 'If':
         If()
     
@@ -450,6 +781,17 @@ while True:
 
     elif functionName == 'Return':
         Return()
+    
+    elif functionName == 'math':
+        math()
+        if mathReturn:
+            sleep(1)
+            print(returnType)
+            if timesReturned == 'all':
+                pass
+                
+            elif timesReturned == 'this':
+                mathReturn = False
 
     sleep(1)
 
