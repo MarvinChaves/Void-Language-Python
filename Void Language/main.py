@@ -1,12 +1,12 @@
 # creation day = 9/03/2021
-# last update = 12/03/2021
-# version = 0.0.8 (test)
-# lines = 656
-# expected lines = 500-1000
+# last update = 13/03/2021
+# version = 0.1.1 (still in development)
+# lines = 1013
+# goal = 2000 lines
 
 '''
 
-important updates {
+update log {
 
     9/03/2021 {
 
@@ -44,6 +44,16 @@ important updates {
 
         }
     }
+
+    13/03/2021 {
+
+        1 - While function added
+        2 - For function bugs fix
+        3 - 1000 lines reached
+        4 - 216 lines added
+
+    }
+
 }
 
 '''
@@ -244,9 +254,38 @@ List of commands(with examples){
 
         examples {
 
+            math
+                3
+                + -> (+, -, *, /)
+                8
 
+            console {
+                11
+            }
 
         }
+    }
+
+    While { this function uses conditionals for the control
+
+        example {
+
+            While -> letter W in upperCase
+                10 <-|
+                ==   |___________
+                10               |
+                    log          |_____________________________________________
+                        str                                                    |
+                            hello, world                                       |
+                                value1/value2 -> first number in the condition |
+                                    1 -> value added in the value
+
+            console {
+                hello, world
+            }
+
+        }
+
     }
 }
 
@@ -623,6 +662,7 @@ def If():
 # =================================================== For def ===================================================
 
 def For():
+
     functionCalled = input('    ')
 
     if functionCalled == 'log':
@@ -716,9 +756,181 @@ def math():
     sleep(1)
     print(f'{realValue :.2f}')
 
+
+# =============================================== While def ================================================
     
+def While():
+
+    doMake = False
+    varType = False
+    strType = False
+    value1Add = False
+    value2Add = False
+
+    value1 = int(input('    '))
+    value2 = str(input('    '))
+    value3 = int(input('    '))
+    
+    do = input('        ')
+
+    if do == 'log':
+        logType = input('           ')
+
+        if logType == 'str':
+            string = input('                ')
+            add = input('                    ')
+            if add == 'value1':
+                value1Added = int(input('                       '))
+                value1Add = True
+                value2Add = False
+
+            elif add == 'value2':
+                value2Added = int(input('                       '))
+                value2Add = True
+                value1Add = False
+
+            strType = True
+        
+        elif logType == 'var':
+            name = input('                     ')
+            if name == varName:
+                varType = True
+
+    print('--' * 50)
+    if value2 == '==':
+        if value1 == value3:
+            if strType:
+                while True:
+                    print(string)
+                    if value1Add:
+                        value1 += value1Added
+
+                    elif value2Add:
+                        value3 += value2Added
+                    
+                    if value1 != value3:
+                        break
+            
+            elif varType:
+                while True:
+                    print(varValue)
+                    if value1Add:
+                        value1 += value1Added
+                    
+                    elif value2dd:
+                        value3 += value2Added
+        
+        else:
+            print('False')
+    
+    elif value2 == '>':
+        if value1 > value3:
+            if strType:
+                    while True:
+                        print(string)
+                        if value1Add:
+                            value1 += value1Added
+
+                        elif value2Add:
+                            value3 += value2Added
+                        
+                        if value1 < value3:
+                            break
+                
+            elif varType:
+                while True:
+                    print(varValue)
+                    if value1Add:
+                        value1 += value1Added
+                    
+                    elif value2dd:
+                        value3 += value2Added
+        
+        elif value1 < value3:
+            print('False')
+    
+    elif value2 == '<':
+        if value1 < value3:
+            if strType:
+                while True:
+                    print(string)
+                    if value1Add:
+                        value1 += value1Added
+
+                    elif value2Add:
+                        value3 += value2Added
+                    
+                    if value1 > value3:
+                        break
+            
+            elif varType:
+                while True:
+                    print(varValue)
+                    if value1Add:
+                        value1 += value1Added
+                    
+                    elif value2dd:
+                        value3 += value2Added
+        
+        else:
+            print('False')
+    
+    elif value2 == '>=':
+        if value1 >= value3:
+            if strType:
+                while True:
+                    print(string)
+                    if value1Add:
+                        value1 += value1Added
+
+                    elif value2Add:
+                        value3 += value2Added
+                    
+                    if value1 <= value3:
+                        break
+            
+            elif varType:
+                while True:
+                    print(varValue)
+                    if value1Add:
+                        value1 += value1Added
+                    
+                    elif value2dd:
+                        value3 += value2Added
+        
+        else:
+            print('False')
+    
+    elif value2 == '<=':
+        if value1 <= value3:
+            if strType:
+                while True:
+                    print(string)
+                    if value1Add:
+                        value1 += value1Added
+
+                    elif value2Add:
+                        value3 += value2Added
+                    
+                    if value1 >= value3:
+                        break
+            
+            elif varType:
+                while True:
+                    print(varValue)
+                    if value1Add:
+                        value1 += value1Added
+                    
+                    elif value2dd:
+                        value3 += value2Added
+        
+        else:
+            print('False')
+
+
 count = 1
 while True:
+    varName = ''
 
 # ================================================ Main ===================================================================
 
@@ -792,6 +1004,9 @@ while True:
                 
             elif timesReturned == 'this':
                 mathReturn = False
+    
+    elif functionName == 'While':
+        While()
 
     sleep(1)
 
