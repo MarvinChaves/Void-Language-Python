@@ -1,6 +1,6 @@
 # creation day = 9/03/2021
 # last update = 13/03/2021
-# version = 0.1.1 (still in development)
+# version = 0.1.1 (beta)
 # lines = 1013
 # goal = 2000 lines
 
